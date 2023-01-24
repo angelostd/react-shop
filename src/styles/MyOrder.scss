@@ -1,9 +1,17 @@
 .MyOrder {
     width: 360px;
+    height: 530px;
     padding: 24px;
     box-sizing: border-box;
     position: absolute;
+    top: 60px;
     right: 0;
+    bottom: auto;
+    overflow-y: auto;
+    border-radius: 6px;
+    border: 1px solid var(--very-light-pink);
+    background-color: var(--white);
+    animation: swipeLeft 0.26s ease;
 }
 
 .title-container {
@@ -61,5 +69,15 @@
 @media (max-width: 640px) {
     .MyOrder {
         width: 100%;
+    }
+}
+
+@keyframes swipeLeft {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 360px;
     }
 }

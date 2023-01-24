@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import OrderItem from '../components/OrderItem';
+import AppContext from '../context/AppContext';
 import '@styles/MyOrder.scss';
 import flechita from '@icons/flechita.svg';
+import { UNSAFE_getPathContributingMatches } from '@remix-run/router';
 
 
 const MyOrder = () => {
+    const { state: { cart } } = useContext(AppContext);
+    const sumTotal = () => {
+        const reducer = (accumulator, currentValue) => accumulator + currentValue.price;
+        const sum = cart.reduce(reducer, 0);
+
+        return sum;
+    }
+
     return (
         <aside className="MyOrder">
             <div className="title-container">
@@ -12,12 +22,14 @@ const MyOrder = () => {
                 <p className="title">My order</p>
             </div>
             <div className="my-order-content">
-                <OrderItem />
+                {cart.map(product => (
+                    <OrderItem product={product} key={`orderItem-${product.id}`} />
+                ))}
                 <div className="order">
                     <p>
                         <span>Total</span>
                     </p>
-                    <p>$560.00</p>
+                    <p>${sumTotal()}</p>
                 </div>
                 <button className="primary-button">
                     Checkout
