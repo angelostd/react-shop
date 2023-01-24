@@ -1,0 +1,13 @@
+.container__not-found {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.4rem;
+}
+
+.container__not-found span {
+    font-size: 4.8rem;
+    font-weight: 900;
+    color: var(--hospital-green);
+}
